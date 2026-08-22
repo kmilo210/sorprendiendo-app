@@ -1,0 +1,19 @@
+rules_version = '2';
+
+// ============================================================
+// REGLAS DE FIREBASE STORAGE — Sorprendiendo
+// ============================================================
+// Solo usuarios autenticados pueden subir o ver las imágenes de
+// detalles, productos y proveedores. Se limita además el tamaño
+// máximo por archivo (5 MB) como protección adicional, aunque la
+// aplicación ya comprime las imágenes antes de subirlas.
+// ============================================================
+
+service firebase.storage {
+  match /b/{bucket}/o {
+    match /{allPaths=**} {
+      allow read, write: if request.auth != null
+                          && request.resource.size < 5 * 1024 * 1024;
+    }
+  }
+}

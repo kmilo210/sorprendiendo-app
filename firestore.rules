@@ -1,0 +1,29 @@
+rules_version = '2';
+
+// ============================================================
+// REGLAS DE FIRESTORE — Sorprendiendo
+// ============================================================
+// Solo usuarios autenticados (con sesión iniciada mediante Firebase
+// Authentication) pueden leer o escribir datos. Nadie puede acceder
+// a la base de datos sin haber iniciado sesión primero.
+//
+// La estructura ya está preparada para roles futuros: si más adelante
+// creas un documento en la colección "usuarios" con un campo "rol"
+// (por ejemplo "admin" o "empleado"), puedes restringir operaciones
+// específicas (como eliminar) solo al rol "admin" sin rediseñar el
+// resto de la aplicación. De momento, con un único administrador,
+// basta con exigir autenticación.
+// ============================================================
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function estaAutenticado() {
+      return request.auth != null;
+    }
+
+    match /{document=**} {
+      allow read, write: if estaAutenticado();
+    }
+  }
+}
