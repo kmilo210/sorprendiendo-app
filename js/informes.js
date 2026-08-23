@@ -424,24 +424,69 @@ function renderDashboardMensual(container, year, month) {
   function renderTabla(pedidos) {
     const wrap = document.getElementById("tabla-pedidos-wrap");
     if (!wrap) return;
+
     if (pedidos.length === 0) {
       wrap.innerHTML = `<p class="text-muted" style="padding:20px 0;">No hay pedidos que coincidan con los filtros.</p>`;
       return;
     }
+
     wrap.innerHTML = `<div class="table-wrap table-as-cards"><table>
-      <thead><tr><th>Fecha</th><th>Ocasión</th><th>Envía</th><th>Sorprendido</th><th>Detalles</th><th>Domiciliario</th><th>Total</th></tr></thead>
+      <thead>
+        <tr>
+          <th>Fecha</th>
+          <th>Ocasión</th>
+          <th>Envía</th>
+          <th>Sorprendido</th>
+          <th>Detalles</th>
+          <th>Valor productos</th>
+          <th>Domiciliario</th>
+          <th>Valor domicilio</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+
       <tbody>
         ${pedidos
           .map(
             (p) => `<tr>
-          <td data-label="Fecha">${formatDateStr(p.fecha)} ${p.hora || ""}</td>
-          <td data-label="Ocasión">${escapeHtml(p.ocasionNombre || "-")}</td>
-          <td data-label="Envía">${escapeHtml(p.nombreEnvia)}</td>
-          <td data-label="Sorprendido">${escapeHtml(p.nombreSorprendido)}</td>
-          <td data-label="Detalles">${(p.detalles || []).map((d) => `${escapeHtml(d.nombre)} ×${d.cantidad}`).join(", ")}</td>
-          <td data-label="Domiciliario">${escapeHtml(p.domiciliarioNombre || "-")}</td>
-          <td data-label="Total"><strong>${formatCOP(p.totalPedido)}</strong></td>
-        </tr>`
+              <td data-label="Fecha">
+                ${formatDateStr(p.fecha)}
+              </td>
+
+              <td data-label="Ocasión">
+                ${escapeHtml(p.ocasionNombre || "-")}
+              </td>
+
+              <td data-label="Envía">
+                ${escapeHtml(p.nombreEnvia)}
+              </td>
+
+              <td data-label="Sorprendido">
+                ${escapeHtml(p.nombreSorprendido)}
+              </td>
+
+              <td data-label="Detalles">
+                ${(p.detalles || [])
+                  .map((d) => `${escapeHtml(d.nombre)} ×${d.cantidad}`)
+                  .join(", ")}
+              </td>
+
+              <td data-label="Valor productos">
+                ${formatCOP(p.totalProductos || 0)}
+              </td>
+
+              <td data-label="Domiciliario">
+                ${escapeHtml(p.domiciliarioNombre || "-")}
+              </td>
+
+              <td data-label="Valor domicilio">
+                ${formatCOP(p.valorDomicilio || 0)}
+              </td>
+
+              <td data-label="Total">
+                <strong>${formatCOP(p.totalPedido)}</strong>
+              </td>
+            </tr>`
           )
           .join("")}
       </tbody>
