@@ -430,3 +430,34 @@ tbody tr:hover { background: var(--surface-alt); }
 
 .chart-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px; box-shadow: var(--shadow-sm); }
 .chart-card h3 { font-size: 15.5px; margin-bottom: 16px; }
+
+/* ============================================================
+   AJUSTES COMPACTOS - PROVEEDORES
+   ============================================================ */
+
+/* Botón Editar */
+.provider-edit-btn {
+  flex: 0 0 auto;
+  padding: 6px 11px;
+  font-size: 12px;
+  gap: 5px;
+}
+
+/* Icono de editar */
+.provider-edit-btn svg {
+  width: 15px;
+  height: 15px;
+}
+
+/* Botón eliminar */
+.item-card-footer .btn-icon {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+}
+
+/* Icono eliminar */
+.item-card-footer .btn-icon svg {
+  width: 16px;
+  height: 16px;
+}

@@ -99,7 +99,9 @@ function renderGrid() {
           <div class="item-card-title">${escapeHtml(p.nombre)}</div>
         </div>
         <div class="item-card-footer">
-          <button class="btn btn-outline btn-sm" data-edit="${p.id}" style="flex:1;">${icons.edit} Editar</button>
+          <button class="btn btn-outline btn-sm provider-edit-btn" data-edit="${p.id}">
+            ${icons.edit} Editar
+          </button>
           <button class="btn btn-icon" data-delete="${p.id}" title="Eliminar">${icons.trash}</button>
         </div>
       </div>`
