@@ -182,6 +182,11 @@ export function renderCompraDetalle(container, listaId) {
 function proveedorNombre(id) {
   return ctx.proveedores.find((p) => p.id === id)?.nombre || null;
 }
+
+function proveedorImagen(id) {
+  return ctx.proveedores.find((p) => p.id === id)?.imagenUrl || null;
+}
+
 function productoNombre(id) {
   return ctx.productos.find((p) => p.id === id)?.nombre || "Producto eliminado";
 }
@@ -440,7 +445,14 @@ function renderItemsConsolidados() {
       const nombreGrupo = key === "sin-proveedor" ? "Sin proveedor asignado" : proveedorNombre(key) || "Proveedor eliminado";
       return `
       <div class="provider-group">
-        <div class="provider-group-title">${icons.truck} ${escapeHtml(nombreGrupo)}</div>
+        <div class="provider-group-title">
+          ${
+            key !== "sin-proveedor" && proveedorImagen(key)
+              ? `<img src="${proveedorImagen(key)}" alt="${escapeHtml(nombreGrupo)}" />`
+              : `<span class="provider-group-icon">${icons.truck}</span>`
+          }
+          <span>${escapeHtml(nombreGrupo)}</span>
+        </div>
         ${groups[key]
           .map(
             (item) => `

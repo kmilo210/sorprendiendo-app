@@ -461,3 +461,28 @@ tbody tr:hover { background: var(--surface-alt); }
   width: 16px;
   height: 16px;
 }
+
+/* Icono del proveedor en listas de compras */
+.provider-group-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 15px;
+  margin-bottom: 10px;
+  color: var(--primary);
+}
+
+.provider-group-icon {
+  width: 24px;
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.provider-group-icon svg {
+  width: 20px;
+  height: 20px;
+}
