@@ -418,7 +418,7 @@ tbody tr:hover { background: var(--surface-alt); }
 .dropdown-menu button.danger { color: var(--accent); }
 
 /* Section divider dentro de formularios largos */
-.form-section-title { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: var(--text-secondary); margin: 22px 0 12px; padding-top: 14px; border-top: 1px solid var(--border); }
+.form-section-title { font-size: 16px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.04em; color: var(--text-secondary); margin: 22px 0 12px; padding-top: 14px; border-top: 1px solid var(--border); }
 .form-section-title:first-child { border-top: none; padding-top: 0; margin-top: 0; }
 
 .filters-bar { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; align-items: center; }

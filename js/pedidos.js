@@ -36,7 +36,7 @@ function newUid() {
 }
 
 export function renderPedidos(container) {
-  lineasDetalle = [newLineaDetalle(), newLineaDetalle(), newLineaDetalle()];
+  lineasDetalle = [newLineaDetalle()];
   lineasAdicional = [];
 
   container.innerHTML = `
@@ -53,10 +53,6 @@ export function renderPedidos(container) {
         <div class="form-group">
           <label class="field-label">Fecha</label>
           <input type="date" id="pedido-fecha" value="${todayISO()}" />
-        </div>
-        <div class="form-group">
-          <label class="field-label">Hora</label>
-          <input type="time" id="pedido-hora" value="${nowTimeHHMM()}" />
         </div>
       </div>
       <div class="form-row">
@@ -342,14 +338,14 @@ function recalcularTotales() {
 /* ---------- Guardar pedido ---------- */
 async function guardarPedido() {
   const fecha = document.getElementById("pedido-fecha").value;
-  const hora = document.getElementById("pedido-hora").value;
+  const hora = nowTimeHHMM();
   const ocasionId = document.getElementById("pedido-ocasion").value;
   const nombreEnvia = document.getElementById("pedido-envia").value.trim();
   const nombreSorprendido = document.getElementById("pedido-sorprendido").value.trim();
   const domiciliarioId = document.getElementById("pedido-domiciliario").value;
   const valorDomicilio = parseCOPInput(document.getElementById("pedido-domicilio").value);
 
-  if (!fecha || !hora) return toast("Ingresa la fecha y hora del pedido", "error");
+  if (!fecha) return toast("Ingresa la fecha del pedido", "error");
   if (!nombreEnvia || !nombreSorprendido) return toast("Ingresa el nombre de quien envía y del sorprendido", "error");
 
   const detallesValidos = lineasDetalle.filter((l) => l.detalleId);
@@ -413,15 +409,18 @@ function renderRecientes(pedidos) {
     return;
   }
   el.innerHTML = `<div class="table-wrap table-as-cards"><table>
-    <thead><tr><th>Fecha</th><th>Envía</th><th>Sorprendido</th><th>Ocasión</th><th>Total</th></tr></thead>
+    <thead><tr><th>Fecha</th><th>Envía</th><th>Sorprendido</th><th>Ocasión</th><th>Detalle</th><th>Total</th></tr></thead>
     <tbody>
       ${pedidos
         .map(
           (p) => `<tr>
-        <td data-label="Fecha">${formatDateStr(p.fecha)} ${p.hora || ""}</td>
+        <td data-label="Fecha">${formatDateStr(p.fecha)}</td>
         <td data-label="Envía">${escapeHtml(p.nombreEnvia)}</td>
         <td data-label="Sorprendido">${escapeHtml(p.nombreSorprendido)}</td>
         <td data-label="Ocasión">${escapeHtml(p.ocasionNombre || "-")}</td>
+        <td data-label="Detalle">${(p.detalles || [])
+                          .map((d) => `${escapeHtml(d.nombre)} ×${d.cantidad}`)
+                          .join(", ")}</td>
         <td data-label="Total"><strong>${formatCOP(p.totalPedido)}</strong></td>
       </tr>`
         )
