@@ -75,9 +75,7 @@ function renderList() {
           </div>
         </div>
         <div class="item-card-footer" style="flex-wrap:wrap;">
-          <button class="btn btn-outline btn-sm domiciliario-edit-btn" data-report="${d.id}" >
-            ${icons.chart} Ver Informe
-          </button>
+          <button class="btn btn-outline btn-sm" data-report="${d.id}" style="flex:1;">${icons.chart} Ver informe</button>
           <button class="btn btn-icon" data-edit="${d.id}" title="Editar">${icons.edit}</button>
           <button class="btn btn-icon" data-toggle="${d.id}" title="${d.activo ? "Desactivar" : "Activar"}">
             ${d.activo ? icons.trash : icons.check}
