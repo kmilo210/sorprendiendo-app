@@ -333,7 +333,7 @@ function openDetalleForm(detalle = null) {
                     )
                     .join("")
             }
-            <div class="autocomplete-item autocomplete-new" data-create-producto="1">${icons.plus} Crear nuevo producto "${escapeHtml(term)}"</div>
+            <div class="autocomplete-item autocomplete-new" data-create-producto="1">+ Crear nuevo producto "${escapeHtml(term)}"</div>
           </div>
         `;
         acList.querySelectorAll("[data-add-producto]").forEach((el) =>
