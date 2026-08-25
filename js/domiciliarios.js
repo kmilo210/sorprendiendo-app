@@ -34,7 +34,7 @@ export function renderDomiciliarios(container) {
         <p>Gestiona tu equipo de domicilios y consulta sus pagos pendientes.</p>
       </div>
       <div class="page-actions">
-        <button class="btn btn-primary" id="btn-new-domiciliario">${icons.plus} Crear domiciliario</button>
+        <button class="btn btn-primary" id="btn-new-domiciliario">+ Crear domiciliario</button>
       </div>
     </div>
     <div id="domiciliarios-list">${loadingHtml("Cargando domiciliarios...")}</div>

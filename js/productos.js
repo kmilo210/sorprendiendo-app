@@ -40,12 +40,12 @@ export function renderProductos(container) {
         <p>Los productos son los ingredientes o elementos que componen tus detalles.</p>
       </div>
       <div class="page-actions">
-        <button class="btn btn-primary" id="btn-new-producto">${icons.plus} Crear producto</button>
+        <button class="btn btn-primary" id="btn-new-producto">$+ Crear producto</button>
       </div>
     </div>
     <div class="search-box" style="max-width:360px;margin-bottom:22px;">
       ${icons.search}
-      <input type="search" id="producto-search" placeholder="Buscar producto... ej: jugo mango" />
+      <input type="search" id="producto-search" placeholder="Buscar producto... ej: jugo hit" />
     </div>
     <div id="productos-grid">${skeletonGridHtml()}</div>
   `;

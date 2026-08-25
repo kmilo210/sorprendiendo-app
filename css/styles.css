@@ -486,3 +486,30 @@ tbody tr:hover { background: var(--surface-alt); }
   width: 20px;
   height: 20px;
 }
+
+.provider-group-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Botón Abrir lista */
+.abrir-lista-btn {
+  flex: 0 0 auto !important;
+  padding: 6px 11px;
+  font-size: 12px;
+  gap: 5px;
+}
+
+.abrir-lista-btn svg {
+  width: 15px;
+  height: 15px;
+}
+
+/* Encabezado de listas de compras */
+.compras-page-header {
+  display: block;
+}
+
+.compras-page-header .page-actions {
+  margin-top: 14px;
+}

@@ -42,8 +42,8 @@ export function renderDetalles(container) {
         <p>Los detalles son los productos sorpresa que vendes, organizados por categoría.</p>
       </div>
       <div class="page-actions">
-        <button class="btn btn-outline" id="btn-manage-categorias">${icons.settings} Categorías</button>
-        <button class="btn btn-primary" id="btn-new-detalle">${icons.plus} Crear detalle</button>
+        <button class="btn btn-outline" id="btn-manage-categorias">Categorías</button>
+        <button class="btn btn-primary" id="btn-new-detalle">+ Crear detalle</button>
       </div>
     </div>
     <div class="search-box" style="max-width:360px;margin-bottom:18px;">

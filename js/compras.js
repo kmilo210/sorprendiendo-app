@@ -36,13 +36,16 @@ let allListas = [];
 
 export function renderCompras(container) {
   container.innerHTML = `
-    <div class="page-header">
+    <div class="page-header compras-page-header">
       <div>
         <h1>Listas de compras</h1>
         <p>Genera listas de compras automáticas a partir de los detalles vendidos.</p>
       </div>
+
       <div class="page-actions">
-        <button class="btn btn-primary" id="btn-new-lista">${icons.plus} Crear lista</button>
+        <button class="btn btn-primary" id="btn-new-lista">
+          + Crear lista
+        </button>
       </div>
     </div>
     <div id="listas-grid">${skeletonGridHtml()}</div>
@@ -85,7 +88,9 @@ function renderGrid() {
           <div class="item-card-sub">${comprados} / ${total} productos comprados</div>
         </div>
         <div class="item-card-footer">
-          <span class="btn btn-outline btn-sm" style="flex:1;pointer-events:none;">${icons.eye} Abrir lista</span>
+          <span class="btn btn-outline btn-sm abrir-lista-btn">
+            ${icons.eye} Abrir lista
+          </span>
           <button class="btn btn-icon" data-delete="${l.id}" title="Eliminar" style="position:relative;z-index:2;">${icons.trash}</button>
         </div>
       </a>`;
@@ -182,11 +187,6 @@ export function renderCompraDetalle(container, listaId) {
 function proveedorNombre(id) {
   return ctx.proveedores.find((p) => p.id === id)?.nombre || null;
 }
-
-function proveedorImagen(id) {
-  return ctx.proveedores.find((p) => p.id === id)?.imagenUrl || null;
-}
-
 function productoNombre(id) {
   return ctx.productos.find((p) => p.id === id)?.nombre || "Producto eliminado";
 }
@@ -446,11 +446,7 @@ function renderItemsConsolidados() {
       return `
       <div class="provider-group">
         <div class="provider-group-title">
-          ${
-            key !== "sin-proveedor" && proveedorImagen(key)
-              ? `<img src="${proveedorImagen(key)}" alt="${escapeHtml(nombreGrupo)}" />`
-              : `<span class="provider-group-icon">${icons.truck}</span>`
-          }
+          <span class="provider-group-icon">${icons.truck}</span>
           <span>${escapeHtml(nombreGrupo)}</span>
         </div>
         ${groups[key]
