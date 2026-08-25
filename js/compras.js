@@ -38,13 +38,13 @@ export function renderCompras(container) {
   container.innerHTML = `
     <div class="page-header compras-page-header">
       <div>
-        <h1>Listas de compras</h1>
+        <h1>Listas de Compras</h1>
         <p>Genera listas de compras automáticas a partir de los detalles vendidos.</p>
       </div>
 
       <div class="page-actions">
         <button class="btn btn-primary" id="btn-new-lista">
-          + Crear lista
+          + Crear Lista
         </button>
       </div>
     </div>

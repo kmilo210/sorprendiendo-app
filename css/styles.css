@@ -513,3 +513,16 @@ tbody tr:hover { background: var(--surface-alt); }
 .compras-page-header .page-actions {
   margin-top: 14px;
 }
+
+/* Botón Editar de productos */
+.product-edit-btn {
+  flex: 0 0 auto !important;
+  padding: 6px 11px;
+  font-size: 16px;
+  gap: 5px;
+}
+
+.product-edit-btn svg {
+  width: 15px;
+  height: 15px;
+}

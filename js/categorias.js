@@ -16,7 +16,7 @@ export function openCategoriasManagerModal(categorias) {
 
 function renderManager(categorias) {
   openModal({
-    title: "Gestionar categorías",
+    title: "Gestionar Categorías",
     bodyHtml: `
       <div class="form-group">
         <label class="field-label">Nueva categoría</label>

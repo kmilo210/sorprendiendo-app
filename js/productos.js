@@ -36,11 +36,11 @@ export function renderProductos(container) {
   container.innerHTML = `
     <div class="page-header">
       <div>
-        <h1>Listado de productos</h1>
+        <h1>Listado de Productos</h1>
         <p>Los productos son los ingredientes o elementos que componen tus detalles.</p>
       </div>
       <div class="page-actions">
-        <button class="btn btn-primary" id="btn-new-producto">$+ Crear producto</button>
+        <button class="btn btn-primary" id="btn-new-producto">+ Crear Producto</button>
       </div>
     </div>
     <div class="search-box" style="max-width:360px;margin-bottom:22px;">
@@ -108,7 +108,9 @@ function renderGrid() {
         }</div>
         </div>
         <div class="item-card-footer">
-          <button class="btn btn-outline btn-sm" data-edit="${p.id}" style="flex:1;">${icons.edit} Editar</button>
+          <button class="btn btn-outline btn-sm product-edit-btn" data-edit="${p.id}">
+            ${icons.edit} Editar
+          </button>
           <button class="btn btn-icon" data-delete="${p.id}" title="Eliminar">${icons.trash}</button>
         </div>
       </div>`;

@@ -39,7 +39,7 @@ export function renderProveedores(container) {
         <p>Administra los proveedores de tus productos.</p>
       </div>
       <div class="page-actions">
-        <button class="btn btn-primary" id="btn-new-proveedor">+ Crear proveedor</button>
+        <button class="btn btn-primary" id="btn-new-proveedor">+ Crear Proveedor</button>
       </div>
     </div>
     <div class="search-box" style="max-width:360px;margin-bottom:22px;">

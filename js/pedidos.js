@@ -42,13 +42,13 @@ export function renderPedidos(container) {
   container.innerHTML = `
     <div class="page-header">
       <div>
-        <h1>Registrar pedido</h1>
+        <h1>Registrar Pedido</h1>
         <p>Registra cada venta de forma estandarizada para obtener informes confiables.</p>
       </div>
     </div>
 
     <div class="card card-pad" style="margin-bottom:24px;">
-      <div class="form-section-title">Información general</div>
+      <div class="form-section-title">Información General</div>
       <div class="form-row">
         <div class="form-group">
           <label class="field-label">Fecha</label>
