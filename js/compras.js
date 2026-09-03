@@ -30,6 +30,11 @@ import {
 import { registerCleanup, navigateTo } from "./app.js";
 import { openProductoForm } from "./productos.js";
 
+const whatsappIconSVG = `
+<svg viewBox="0 0 32 32" width="18" height="18" fill="currentColor" aria-hidden="true">
+<path d="M16.02 3C9.4 3 4 8.38 4 15c0 2.34.66 4.53 1.8 6.4L4 29l7.78-1.75A11.9 11.9 0 0 0 16.02 27C22.65 27 28 21.62 28 15S22.65 3 16.02 3Zm0 21.6c-1.97 0-3.85-.55-5.46-1.6l-.39-.24-4.62 1.04 1.04-4.5-.26-.4A9.5 9.5 0 0 1 6.4 15c0-5.3 4.3-9.6 9.62-9.6 5.3 0 9.6 4.3 9.6 9.6 0 5.3-4.3 9.6-9.6 9.6Zm5.28-7.2c-.29-.15-1.7-.84-1.96-.93-.26-.1-.45-.15-.65.14-.19.29-.74.93-.9 1.12-.17.2-.33.22-.62.08-.29-.15-1.2-.44-2.3-1.42-.85-.75-1.42-1.68-1.59-1.97-.17-.29-.02-.44.13-.59.13-.13.29-.34.44-.5.15-.17.19-.29.29-.48.1-.2.05-.37-.02-.52-.08-.15-.65-1.58-.9-2.16-.24-.57-.48-.5-.65-.5-.17-.01-.36-.01-.55-.01-.19 0-.5.07-.76.36-.26.29-1 1-1 2.42 0 1.43 1.03 2.82 1.17 3.02.15.19 2.03 3.1 4.93 4.35.69.3 1.22.48 1.64.61.69.22 1.32.19 1.81.11.55-.08 1.7-.7 1.94-1.37.24-.68.24-1.26.17-1.38-.07-.12-.26-.19-.55-.34Z"/>
+</svg>`;
+
 /* ============================================================
    LISTADO DE LISTAS DE COMPRAS
    ============================================================ */
@@ -217,7 +222,9 @@ function paintDetalle(container) {
             <p id="compra-fecha" class="text-muted"></p>
           </div>
           <div class="page-actions">
-            <button class="btn btn-outline" id="btn-whatsapp">${icons.whatsapp} Enviar por WhatsApp</button>
+            <button class="btn btn-outline btn-whatsapp" id="btn-whatsapp">
+              ${whatsappIconSVG} Enviar por WhatsApp
+            </button>
           </div>
         </div>
 

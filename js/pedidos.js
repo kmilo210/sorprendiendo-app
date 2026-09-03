@@ -48,14 +48,12 @@ export function renderPedidos(container) {
     </div>
 
     <div class="card card-pad" style="margin-bottom:24px;">
-      <div class="form-section-title">Información General</div>
+      <div class="form-section-title">Información general</div>
       <div class="form-row">
         <div class="form-group">
           <label class="field-label">Fecha</label>
           <input type="date" id="pedido-fecha" value="${todayISO()}" />
         </div>
-      </div>
-      <div class="form-row">
         <div class="form-group">
           <label class="field-label">Ocasión</label>
           <select id="pedido-ocasion"><option value="">Selecciona una ocasión</option></select>
