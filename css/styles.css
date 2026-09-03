@@ -75,12 +75,15 @@ img { max-width: 100%; display: block; }
 
 /* ---------- Botones ---------- */
 .btn {
-  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-  padding: 12px 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 9px 16px;
   border-radius: var(--radius-pill);
   border: none;
   font-weight: 600;
-  font-size: 14.5px;
+  font-size: 13px;
   transition: transform var(--transition), box-shadow var(--transition), background var(--transition), opacity var(--transition);
   white-space: nowrap;
 }
@@ -257,12 +260,44 @@ input:focus, select:focus, textarea:focus {
 select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9' fill='none'%3E%3Cpath d='M1 1L7 7L13 1' stroke='%236B7280' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 15px center; padding-right: 38px; }
 
 .input-file-drop {
-  border: 1.5px dashed var(--border); border-radius: var(--radius-md);
-  padding: 22px; text-align: center; cursor: pointer; transition: all var(--transition);
+  border: 1.5px dashed var(--border);
+  border-radius: var(--radius-md);
+  padding: 12px;
+  min-height: 110px;
+  max-height: 140px;
+  text-align: center;
+  cursor: pointer;
+  transition: all var(--transition);
   background: var(--surface-alt);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
 }
-.input-file-drop:hover { border-color: var(--secondary); }
-.input-file-drop img.preview { max-height: 130px; border-radius: var(--radius-sm); margin: 0 auto 10px; }
+
+.input-file-drop:hover {
+  border-color: var(--secondary);
+}
+
+.input-file-drop img.preview {
+  max-height: 85px;
+  max-width: 100%;
+  width: auto;
+  border-radius: var(--radius-sm);
+  margin: 0 auto 6px;
+}
+
+.input-file-drop > div {
+  font-size: 32px;
+  line-height: 1;
+}
+
+.input-file-drop > div svg {
+  width: 42px;
+  height: 42px;
+}
+
 
 .checkbox-row { display: flex; align-items: center; gap: 10px; cursor: pointer; }
 .checkbox-row input[type=checkbox] { width: 20px; height: 20px; accent-color: var(--primary); cursor: pointer; }
@@ -399,7 +434,7 @@ tbody tr:hover { background: var(--surface-alt); }
 /* Proveedor grupo (lista de compras) */
 .provider-group { margin-bottom: 22px; }
 .provider-group-title { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 15px; margin-bottom: 10px; color: var(--primary); }
-.provider-group-title img { width: 26px; height: 26px; border-radius: 8px; object-fit: cover; }
+.provider-group-title img { width: 10px; height: 10px; border-radius: 4px; object-fit: cover; }
 
 .shopping-item { display: flex; align-items: center; gap: 12px; padding: 12px 16px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md); margin-bottom: 8px; }
 .shopping-item.checked { opacity: 0.55; }
@@ -430,6 +465,7 @@ tbody tr:hover { background: var(--surface-alt); }
 
 .chart-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px; box-shadow: var(--shadow-sm); }
 .chart-card h3 { font-size: 15.5px; margin-bottom: 16px; }
+
 
 /* ============================================================
    AJUSTES COMPACTOS - PROVEEDORES
@@ -487,11 +523,6 @@ tbody tr:hover { background: var(--surface-alt); }
   height: 20px;
 }
 
-.provider-group-icon svg {
-  width: 20px;
-  height: 20px;
-}
-
 /* Botón Abrir lista */
 .abrir-lista-btn {
   flex: 0 0 auto !important;
@@ -526,3 +557,4 @@ tbody tr:hover { background: var(--surface-alt); }
   width: 15px;
   height: 15px;
 }
+
