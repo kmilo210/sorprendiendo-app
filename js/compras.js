@@ -28,6 +28,7 @@ import {
   loadingHtml,
 } from "./utils.js";
 import { registerCleanup, navigateTo } from "./app.js";
+import { openProductoForm } from "./productos.js";
 
 /* ============================================================
    LISTADO DE LISTAS DE COMPRAS
@@ -38,13 +39,13 @@ export function renderCompras(container) {
   container.innerHTML = `
     <div class="page-header compras-page-header">
       <div>
-        <h1>Listas de Compras</h1>
+        <h1>Listas de compras</h1>
         <p>Genera listas de compras automáticas a partir de los detalles vendidos.</p>
       </div>
 
       <div class="page-actions">
         <button class="btn btn-primary" id="btn-new-lista">
-          + Crear Lista
+          + Crear lista
         </button>
       </div>
     </div>
@@ -187,6 +188,17 @@ export function renderCompraDetalle(container, listaId) {
 function proveedorNombre(id) {
   return ctx.proveedores.find((p) => p.id === id)?.nombre || null;
 }
+
+function proveedorIcono(id) {
+  const proveedor = ctx.proveedores.find((p) => p.id === id);
+
+  if (proveedor?.imagenUrl) {
+    return `<img src="${proveedor.imagenUrl}" alt="${escapeHtml(proveedor.nombre)}" class="provider-group-img" />`;
+  }
+
+  return icons.truck;
+}
+
 function productoNombre(id) {
   return ctx.productos.find((p) => p.id === id)?.nombre || "Producto eliminado";
 }
@@ -306,18 +318,24 @@ function bindStaticEvents(container) {
     }, 150)
   );
 
-  // Buscar / agregar PRODUCTO individual
+    // Buscar / agregar PRODUCTO individual
   const prodSearch = document.getElementById("add-producto-search");
   const prodAc = document.getElementById("add-producto-ac");
+
   prodSearch.addEventListener(
     "input",
     debounce((e) => {
       const term = e.target.value.trim();
+
       if (!term) {
         prodAc.innerHTML = "";
         return;
       }
-      const matches = ctx.productos.filter((p) => matchesSearch(p.nombre, term)).slice(0, 8);
+
+      const matches = ctx.productos
+        .filter((p) => matchesSearch(p.nombre, term))
+        .slice(0, 8);
+
       prodAc.innerHTML = `<div class="autocomplete-list">
         ${
           matches.length === 0
@@ -331,7 +349,13 @@ function bindStaticEvents(container) {
                 )
                 .join("")
         }
+
+        <div class="autocomplete-item autocomplete-new" data-create-producto="1">
+          + Crear nuevo producto "${escapeHtml(term)}"
+        </div>
       </div>`;
+
+      // Agregar producto existente
       prodAc.querySelectorAll("[data-pick-producto]").forEach((el) =>
         el.addEventListener("click", async () => {
           await addProductoIndividual(el.dataset.pickProducto, 1);
@@ -339,6 +363,26 @@ function bindStaticEvents(container) {
           prodAc.innerHTML = "";
         })
       );
+
+      // Crear producto nuevo
+      prodAc.querySelector("[data-create-producto]")?.addEventListener("click", () => {
+        openProductoForm(null, (nuevo) => {
+          // Actualizar inmediatamente el contexto local
+          ctx.productos = [...ctx.productos, nuevo];
+
+          // Agregar automáticamente el producto recién creado
+          addProductoIndividual(nuevo.id, 1);
+        });
+
+        // Prellenar el nombre con lo que el usuario escribió
+        setTimeout(() => {
+          const nameInput = document.getElementById("producto-nombre");
+          if (nameInput) nameInput.value = term;
+        }, 30);
+
+        prodSearch.value = "";
+        prodAc.innerHTML = "";
+      });
     }, 150)
   );
 
@@ -446,7 +490,7 @@ function renderItemsConsolidados() {
       return `
       <div class="provider-group">
         <div class="provider-group-title">
-          <span class="provider-group-icon">${icons.truck}</span>
+          <span class="provider-group-icon">${key === "sin-proveedor" ? icons.truck : proveedorIcono(key)}</span>
           <span>${escapeHtml(nombreGrupo)}</span>
         </div>
         ${groups[key]
