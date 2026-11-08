@@ -45,6 +45,72 @@ const PAGE_TITLES = {
 const root = document.getElementById("app-root");
 let currentUser = null;
 
+/* ============================================================
+   SISTEMA DE TEMAS - MODO CLARO / OSCURO
+   ============================================================ */
+
+const THEME_KEY = "sorprendiendo-theme";
+
+function getCurrentTheme() {
+  return document.documentElement.dataset.theme || "light";
+}
+
+function applyTheme(theme) {
+  const selectedTheme = theme === "dark" ? "dark" : "light";
+
+  document.documentElement.dataset.theme = selectedTheme;
+
+  try {
+    localStorage.setItem(THEME_KEY, selectedTheme);
+  } catch (error) {
+    console.warn("No se pudo guardar la preferencia de tema:", error);
+  }
+
+  updateThemeButtons();
+}
+
+function updateThemeButtons() {
+  const currentTheme = getCurrentTheme();
+  const isDark = currentTheme === "dark";
+
+  const icon = isDark
+    ? `<svg viewBox="0 0 24 24" fill="none"
+         stroke="currentColor" stroke-width="2"
+         stroke-linecap="round" stroke-linejoin="round">
+         <circle cx="12" cy="12" r="4"/>
+         <path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42
+         m11.3 11.3 1.42 1.42M2 12h2m16 0h2
+         M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/>
+       </svg>`
+    : `<svg viewBox="0 0 24 24" fill="none"
+         stroke="currentColor" stroke-width="2"
+         stroke-linecap="round" stroke-linejoin="round">
+         <path d="M20.9 13A9 9 0 0 1 11 3.1
+         9 9 0 1 0 20.9 13Z"/>
+       </svg>`;
+
+  document.querySelectorAll("[data-theme-toggle]").forEach((button) => {
+    const label = isDark ? "Modo claro" : "Modo oscuro";
+
+    button.innerHTML = `${icon}<span>${label}</span>`;
+    button.title = `Cambiar a ${isDark ? "modo claro" : "modo oscuro"}`;
+    button.setAttribute("aria-label", button.title);
+  });
+}
+
+function toggleTheme() {
+  const nextTheme = getCurrentTheme() === "dark" ? "light" : "dark";
+  applyTheme(nextTheme);
+}
+
+/* Recuperar tema guardado al iniciar */
+try {
+  const savedTheme = localStorage.getItem(THEME_KEY);
+  applyTheme(savedTheme || "light");
+} catch (error) {
+  applyTheme("light");
+}
+
 watchAuthState(
   (user) => {
     currentUser = user;
@@ -131,6 +197,12 @@ function renderAppShell() {
           ).join("")}
         </nav>
         <div class="nav-spacer"></div>
+
+        <button class="nav-link theme-toggle" type="button"
+          data-theme-toggle>
+          <span>Modo oscuro</span>
+        </button>
+
         <a href="#" class="nav-link" id="logout-link">
           ${icons.logout}
           <span>Cerrar sesión</span>
@@ -146,13 +218,23 @@ function renderAppShell() {
             <div class="logo-mark" style="width:30px;height:30px;">${LOGO_SVG}</div>
             Sorprendiendo
           </div>
-          <div style="width:38px;"></div>
+          <button class="btn btn-icon theme-toggle"
+            type="button"
+            data-theme-toggle
+            aria-label="Cambiar tema">
+          </button>
         </div>
         <main class="main-content" id="main-content">
         </main>
       </div>
     </div>
   `;
+
+  document.querySelectorAll("[data-theme-toggle]").forEach((button) => {
+    button.addEventListener("click", toggleTheme);
+  });
+
+  updateThemeButtons();
 
   document.getElementById("logout-link").addEventListener("click", async (e) => {
     e.preventDefault();
