@@ -563,3 +563,132 @@ tbody tr:hover { background: var(--surface-alt); }
   font-size: 18px;
   gap: 8px;
 }
+
+/* ============================================================
+   MODO OSCURO - SORPRENDIENDO
+   ============================================================ */
+
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  /* Fondos */
+  --background: #17131D;
+  --surface: #211B29;
+  --surface-alt: #2C2436;
+  --primary: #b081db;
+  
+
+  /* Textos */
+  --text: #F3EFF8;
+  --text-secondary: #B9AFC4;
+  --text-muted: #93889F;
+  --border: #ab76eb;
+
+  /* Estados */
+  --success: #42C99A;
+  --success-bg: #193D33;
+  --warning-bg: #482638;
+  --warning-text: #FF83AA;
+  --info-bg: #1C3548;
+
+  /* Sombras */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.18);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.25);
+  --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.35);
+}
+
+/* Transiciones suaves */
+body,
+.card,
+.stat-card,
+.item-card,
+.table-wrap,
+.modal-box,
+.topbar,
+.dropdown-menu,
+input,
+select,
+textarea,
+.line-item,
+.shopping-item {
+  transition:
+    background-color 180ms ease,
+    color 180ms ease,
+    border-color 180ms ease;
+}
+
+/* Scrollbar */
+[data-theme="dark"] ::-webkit-scrollbar-thumb {
+  background: #51445F;
+}
+
+/* Botones secundarios */
+[data-theme="dark"] .btn-danger:hover:not(:disabled) {
+  background: #633044;
+}
+
+/* Skeleton de carga */
+[data-theme="dark"] .skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--surface-alt) 25%,
+    #3A3045 37%,
+    var(--surface-alt) 63%
+  );
+  background-size: 400% 100%;
+}
+
+/* Modal */
+[data-theme="dark"] .modal-overlay {
+  background: rgba(0, 0, 0, 0.65);
+}
+
+/* Encabezado móvil */
+[data-theme="dark"] .topbar-brand {
+  color: var(--text);
+}
+
+/* Botón de cambio de tema */
+.theme-toggle {
+  width: 100%;
+  border: none;
+  background: transparent;
+  text-align: left;
+  font-family: var(--font-body);
+  cursor: pointer;
+}
+
+.theme-toggle:hover {
+  background: rgba(255, 255, 255, 0.10);
+  color: #FFFFFF;
+}
+
+.theme-toggle svg {
+  width: 19px;
+  height: 19px;
+  flex-shrink: 0;
+}
+
+
+
+/* Botón de tema en el encabezado móvil */
+.topbar .theme-toggle {
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface-alt);
+  color: var(--text);
+  border-radius: var(--radius-pill);
+}
+
+.topbar .theme-toggle:hover {
+  background: var(--border);
+  color: var(--text);
+}
+
+.topbar .theme-toggle span {
+  display: none;
+}
